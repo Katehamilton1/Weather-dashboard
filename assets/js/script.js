@@ -38,6 +38,9 @@ var getForcast = function (lat, lon) {
           console.log("display Weather", data);
           console.log("uv", data.current.uvi);
           document.getElementById("UV-index").innerHTML = data.current.uvi;
+          document.getElementById("wind-span").innerHTML = data.current.wind_speed;
+          document.getElementById("humidity-span").innerHTML = data.current.humidity;
+          document.getElementById("fiveDayCardsRow").innerHTML = data.daily;
         });
       }
     });
