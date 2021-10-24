@@ -37,11 +37,11 @@ var getForcast = function (lat, lon) {
         response.json().then(function (data) {
           console.log("display Weather", data);
           console.log("uv", data.current.uvi);
+          document.getElementById("UV-index").innerHTML = data.current.uvi;
         });
       }
     });
   };
-
 
 
 // Clear search history
