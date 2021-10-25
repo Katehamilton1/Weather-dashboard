@@ -8,6 +8,7 @@ citySearchEL.addEventListener("submit",function(event){
     console.log("form submited")
     console.log(userInputEL.value)
     getCityWeather(userInputEL.value);
+    getFiveDay(userInputEL.value);
 });
 
 
@@ -31,20 +32,34 @@ var getCityWeather = function (city) {
 var getForcast = function (lat, lon) {
     var apiKey = "147201a46f94fdc2b6ce9d902d685f99";
     var apiURL =`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`
-  
+
     fetch(apiURL).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log("display Weather", data);
           console.log("uv", data.current.uvi);
-          document.getElementById("UV-index").innerHTML = data.current.uvi;
+          document.getElementById("UV-index").innerHTML = "The UV index is:                                                         " + data.current.uvi;
           document.getElementById("wind-span").innerHTML = data.current.wind_speed;
           document.getElementById("humidity-span").innerHTML = data.current.humidity;
-          document.getElementById("fiveDayCardsRow").innerHTML = data.daily;
+        //   document.getElementById("fiveDayCardsRow").innerHTML = data.daily(JSON.stringify({}))
         });
       }
     });
   };
+
+  var getFiveDay = function (city) {
+    var apiKey = "147201a46f94fdc2b6ce9d902d685f99";
+    var apiURL =`http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`
+  
+    fetch(apiURL).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log("new api", data);
+          getFiveDay(data)
+        });
+      }
+    });
+};
 
 
 // Clear search history
