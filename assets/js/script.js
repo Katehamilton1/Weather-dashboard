@@ -25,6 +25,7 @@ var getCityWeather = function (city) {
       response.json().then(function (data) {
         console.log("display Weather", data);
         getForcast(data.coord.lat, data.coord.lon);
+        console.log(makeForecast);
       });
     }
   });
@@ -45,15 +46,14 @@ var getForcast = function (lat, lon) {
 
         var tomorrow = data.daily[0].dt;
         var tomorrowString = moment.unix(tomorrow).format("DD");
-        console.log(tomorrowString);
-        makeForecast();
+        makeForecast(data);
 
       });
     };
     });
     };
 
-function makeForecast() {
+function makeForecast(data) {
   
   let anchorEl = document.getElementById("weather")
   
