@@ -1,3 +1,5 @@
+
+   
 var citySearchEL = document.getElementById("city-search-form");
 var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
@@ -51,32 +53,31 @@ var getForcast = function (lat, lon) {
         var tomorrowString = moment.unix(tomorrow).format("DD");
         console.log(tomorrowString);
         makeForecast ();
+
+
+        function makeForecast() {
+          let anchorEl = document.getElementById("weather")
+          for (let i = 0; i < 5; i++) {
+            anchorEl.innerHTML += `<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body" id=${i + 1}">
+    <p class="card-text">${data.daily[i].humidity}.</p>
+    </div>
+    </div>`
+      }
+      }
+
+  
       
+    
 
-        // document.getElementById("day1").innerHTML = tomorrowString;
-
-function makeForecast () {
-for (let i=0; i<currDate.length; i++) {
-
-  document.getElementById("day1").innerHTML = data.daily[0];
-  document.getElementById("day2").innerHTML = data.daily[1];
-  document.getElementById("day3").innerHTML = data.daily[2];
-  document.getElementById("day4").innerHTML = data.daily[3];
-  document.getElementById("day5").innerHTML = data.daily[4];
-}
-}
-      });
+    // Clear search history
+    function displaySearchHistory() {
+      var searchHistory = document.getElementById("search-history");
+      console.log("display search");
     }
-  });
-};
 
-// Clear search history
-function displaySearchHistory() {
-  var searchHistory = document.getElementById("search-history");
-  console.log("display search");
-}
-
-// clear seach history
-function clearHistory() {
-  console.log("clear seach history");
-}
+    // clear seach history
+    function clearHistory() {
+      console.log("clear seach history");
+    }
