@@ -66,8 +66,9 @@ function makeForecast(data) {
 
   for (let i = 0; i < 5; i++) {
     anchorEl.innerHTML += `  
-    </div>  <div class="row"> <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"
-  <div class="card-body" id=${i + 1}">
+    <div class="container">
+      <div class="forecast bg-primary text-white rounded"
+        id=${i + 1}">
 
     <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32} degrees</p>
     <p class="wind">${data.daily[i].wind_speed} wind speed </p>
@@ -75,7 +76,7 @@ function makeForecast(data) {
     <p class="humidity">${data.daily[i].humidity} humidity </p>
     </div>
     </div>
-  
+    </div>
     </div>`
 
     console.log(data.daily[i].dt)
