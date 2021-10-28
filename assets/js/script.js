@@ -5,6 +5,7 @@ var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 
+
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("form submited");
@@ -25,7 +26,7 @@ var getCityWeather = function (city) {
       response.json().then(function (data) {
         console.log("display Weather", data);
         getForcast(data.coord.lat, data.coord.lon);
-        console.log(makeForecast);
+
       });
     }
   });
@@ -50,20 +51,34 @@ var getForcast = function (lat, lon) {
 
       });
     };
-    });
-    };
+  });
+};
+
+
+// var weatherIcon = http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
+// console.log(weatherIcon)
+
 
 function makeForecast(data) {
-  
+  console.log(data);
   let anchorEl = document.getElementById("weather")
-  
+
+
   for (let i = 0; i < 5; i++) {
-    anchorEl.innerHTML += `<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+    anchorEl.innerHTML += `  
+    </div>  <div class="row"> <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"
   <div class="card-body" id=${i + 1}">
-    <p class="card-text">${data.daily[i]}</p>
+
+    <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32} degrees</p>
+    <p class="wind">${data.daily[i].wind_speed} wind speed </p>
+    <p class="icon">  </p> 
+    <p class="humidity">${data.daily[i].humidity} humidity </p>
     </div>
+    </div>
+  
     </div>`
+
+    console.log(data.daily[i].dt)
   };
 };
 
