@@ -1,11 +1,9 @@
-
-
 var citySearchEL = document.getElementById("city-search-form");
 var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 
-
+//submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("form submited");
@@ -13,10 +11,8 @@ citySearchEL.addEventListener("submit", function (event) {
   getCityWeather(userInputEL.value);
 });
 
-clearHistory.addEventListener("submit", function (event) {
-  console.log("clearHistory");
-});
 
+//first api that looks at the daily weather
 var getCityWeather = function (city) {
   var apiKey = "147201a46f94fdc2b6ce9d902d685f99";
   var apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
@@ -31,6 +27,8 @@ var getCityWeather = function (city) {
     }
   });
 };
+
+//second api that looks at the daily weather
 var getForcast = function (lat, lon) {
   var apiKey = "147201a46f94fdc2b6ce9d902d685f99";
   var apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -53,23 +51,21 @@ var getForcast = function (lat, lon) {
     };
   });
 };
-
-
 // var weatherIcon = http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
 // console.log(weatherIcon)
 
 
+//creates the weekly forcast using a loop to create the html elements
 function makeForecast(data) {
   console.log(data);
   let anchorEl = document.getElementById("weather")
-
-
   for (let i = 0; i < 5; i++) {
     anchorEl.innerHTML += `  
-    <div class="container">
-      <div class="forecast bg-primary text-white rounded"
+    <div class= "row">
+    <div class= "col-12">
+    
+  <div class="forecast bg-primary text-white rounded center space-between"
         id=${i + 1}">
-
     <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32} degrees</p>
     <p class="wind">${data.daily[i].wind_speed} wind speed </p>
     <p class="icon">  </p> 
@@ -83,13 +79,14 @@ function makeForecast(data) {
   };
 };
 
+
 // Clear search history
 function displaySearchHistory() {
   var searchHistory = document.getElementById("search-history");
   console.log("display search");
 }
 
-// clear seach history
-function clearHistory() {
-  console.log("clear seach history");
-}
+//button to clear history
+clearHistory.addEventListener("submit", function (event) {
+  console.log("clearHistory");
+});
