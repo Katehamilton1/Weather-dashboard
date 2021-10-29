@@ -20,35 +20,33 @@
     </div>
 </body>
 
+<!-- search box for users to look up city -->
+
 <div class="row"></div>
 <div class="col-12 col-md-3 p-2 search-column">
     <form class="border p-2" id="city-search-form">
         <aside id="sideMenu" class="sidebar">
-        <h3>Search for a City</h3>
-        <input id="city" type="text" autofocus="true" class="form-input" size="25" />
-        </br>
-        </br>
-        <button class="btn btn-primary" type="submit">search</button>
+            <h3>Search for a City</h3>
+            <input id="city" type="text" autofocus="true" class="form-input" size="25" />
+            </br>
+            </br>
+            <button class="btn btn-primary" type="submit">search</button>
     </form>
     </aside>
 </div>
-
-<ul id="search-history"></ul>
-
-<button id="clear-history">Clear History</button>
+<!-- <ul id="search-history"></ul>
+<button id="clear-history">Clear History</button> -->
 
 
 
-<div class="col-8">
-    <div class="row mr-0">
-        <div class="col-12 border border-dark m-3 rounded">
-            <div class="row">
+<div class="container">
+    <div class="row">
+
+        <div class="col-6 align-self-end">
+            <div class="border border-dark rounded">
                 <div class="col-12">
-                    <span id="city-name" class="city-name align-middle"></span>
-
-
-<!-- daily forcast -->
-
+                 
+                    <!-- daily forcast -->
                     <div class="row">
                         <div class="col-12">
                             <p id="temperature"></p>
@@ -72,16 +70,20 @@
                 </div>
             </div>
         </div>
-        <!-- forcast  -->
-        <div>5-Day Forecast</div>
     </div>
+</div>
 
-    <div id="weather" class="row"></div>
+
+<!-- forcast  -->
+<div>5-Day Forecast</div>
+</div>
+
+<div id="weather" class="row"></div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="./assets/js/script.js"></script>
-    </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="./assets/js/script.js"></script>
+</body>
 
 </html>
