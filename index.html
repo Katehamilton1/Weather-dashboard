@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +10,6 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-
 <body>
     <!-- Jumbotron to display the City name upon search -->
     <div id="header">
@@ -22,49 +20,38 @@
 
 <!-- search box for users to look up city -->
 
-<div class="row"></div>
-<div class="col-12 col-md-3 p-2 search-column">
-    <form class="border p-2" id="city-search-form">
-        <aside id="sideMenu" class="sidebar">
-            <h3>Search for a City</h3>
-            <input id="city" type="text" autofocus="true" class="form-input" size="25" />
-            </br>
-            </br>
-            <button class="btn btn-primary" type="submit">search</button>
-    </form>
-    </aside>
-</div>
-<!-- <ul id="search-history"></ul>
-<button id="clear-history">Clear History</button> -->
-
-
-
 <div class="container">
-    <div class="row justify-content-end">
+    <div class="row">
+<div class="col-6 p-2 search-column">
+   <form class="border p-2" id="city-search-form">
+       <aside id="sideMenu" class="sidebar">
+           <h3>Search for a City</h3>
+           <input id="city" type="text" autofocus="true" class="form-input" size="25" />
+           </br>
+           </br>
+           <button class="btn btn-primary" type="submit">search</button>
+   </form>
+   </aside>
+</div>
         <div class="col-6 border border-dark rounded ">
-                        <div class="col-12">
                             <p id="temperature"></p>
-                        </div>
-                        <div class="col-12">
                             <p id="UV-index"></p>
-                        </div>
-                        <div class="col-12">
                             <p id="wind-span"></p>
-                        </div>
-                        <div class="col-12">
                             <p id="humidity-span"></p>
-                        </div>
-
                 </div>
             </div>
         </div>
+     
 
 
 <!-- forcast  -->
-<div>5-Day Forecast</div>
+<div class="container">
+    <div class="row">
+        <h2> Weather forcast</h2>
+    </div>
+<div id="weather" class="row d-flex justify-content-around">
 </div>
 
-<div id="weather" class="row"></div>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

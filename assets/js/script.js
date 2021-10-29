@@ -3,12 +3,16 @@ var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 
+// Easy access to data
+var cityList = [];
+
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
+  citySearch() 
 });
 
 
@@ -36,9 +40,9 @@ var getForcast = function (lat, lon) {
   fetch(apiURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        document.getElementById("UV-index").innerHTML = "The UV index is: " + data.current.uvi;
-        document.getElementById("wind-span").innerHTML = data.current.wind_speed;
-        document.getElementById("humidity-span").innerHTML = data.current.humidity;
+        document.getElementById("UV-index").innerHTML = "UV index is: " + data.current.uvi;
+        document.getElementById("wind-span").innerHTML ="Current wind speed is: " + data.current.wind_speed;
+        document.getElementById("humidity-span").innerHTML = "Current humidity is: " + data.current.humidity;
 
         currDate = data.current.dt;
         var dateString = moment.unix(currDate).format("DD");
@@ -61,18 +65,13 @@ function makeForecast(data) {
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
     anchorEl.innerHTML += `  
-    <div class= "row">
-    <div class= "col-12">
-    
-  <div class="forecast bg-primary text-white rounded center space-between"
+  
+  <div class="forecast bg-primary text-white rounded center"
         id=${i + 1}">
     <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32} degrees</p>
     <p class="wind">${data.daily[i].wind_speed} wind speed </p>
     <p class="icon">  </p> 
     <p class="humidity">${data.daily[i].humidity} humidity </p>
-    </div>
-    </div>
-    </div>
     </div>`
 
     console.log(data.daily[i].dt)
@@ -87,6 +86,26 @@ function displaySearchHistory() {
 }
 
 //button to clear history
-clearHistory.addEventListener("submit", function (event) {
-  console.log("clearHistory");
-});
+// clearHistory.addEventListener("submit", function (event) {
+//   console.log("clearHistory");
+// });
+
+// searchHistoryList.empty();
+
+
+function citySearch() {
+  var recentCities = userInputEL.value
+
+  var searchHistory ={ 
+    city: city, 
+    weather: forecast
+  }
+var fiveDay = JSON.parse(window.localStorage.getItem('fiveDay')|| []);
+
+
+fiveDay.push(searchHistory)
+
+window.localStorage.setItem("fiveDay", JSON.stringify(city));
+console.log(localStorage)
+}
+
