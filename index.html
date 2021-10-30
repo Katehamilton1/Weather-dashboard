@@ -22,7 +22,7 @@
 
 <div class="container">
     <div class="row">
-<div class="col-6 p-2 search-column">
+<div class="col-4 p-2 search-column">
    <form class="border p-2" id="city-search-form">
        <aside id="sideMenu" class="sidebar">
            <h3>Search for a City</h3>
@@ -33,7 +33,7 @@
    </form>
    </aside>
 </div>
-        <div class="col-6 border border-dark rounded ">
+        <div class="col-8 border border-dark rounded ">
                             <p id="temperature"></p>
                             <p id="UV-index"></p>
                             <p id="wind-span"></p>
@@ -41,17 +41,29 @@
                 </div>
             </div>
         </div>
-     
-
-
+    </br>
+</br>  
+</br>
+</br>
 <!-- forcast  -->
 <div class="container">
     <div class="row">
-        <h2> Weather forcast</h2>
-    </div>
-<div id="weather" class="row d-flex justify-content-around">
+<div class="col-4 ">
+    <p class= "recent-search"></p>
+           </br>
+           </br>
+           <button class="btn btn-primary" type="submit">search</button>
+   </form>
+   </aside>
 </div>
-
+        <div class="col-8 border border-dark rounded ">
+            <h2> Weather forcast</h2>
+            <div id="weather" class="row d-flex justify-content-around">
+            </div>         
+                </div>
+            </div>
+        </div>
+    </br>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

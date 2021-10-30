@@ -12,7 +12,7 @@ citySearchEL.addEventListener("submit", function (event) {
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
-  citySearch() 
+  citySearch(userInputEL.value);
 });
 
 
@@ -73,10 +73,11 @@ function makeForecast(data) {
     <p class="icon">  </p> 
     <p class="humidity">${data.daily[i].humidity} humidity </p>
     </div>`
-
     console.log(data.daily[i].dt)
   };
 };
+
+
 
 
 // Clear search history
@@ -93,19 +94,17 @@ function displaySearchHistory() {
 // searchHistoryList.empty();
 
 
-function citySearch() {
+function citySearch(city) {
   var recentCities = userInputEL.value
 
   var searchHistory ={ 
     city: city, 
-    weather: forecast
+   
   }
-var fiveDay = JSON.parse(window.localStorage.getItem('fiveDay')|| []);
-
-
+var fiveDay = JSON.parse(window.localStorage.getItem('fiveDay'));
 fiveDay.push(searchHistory)
 
-window.localStorage.setItem("fiveDay", JSON.stringify(city));
-console.log(localStorage)
 }
 
+
+console.log(localStorage)
