@@ -40,6 +40,7 @@ var getForcast = function (lat, lon) {
   fetch(apiURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+       
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
         document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
         document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
@@ -65,13 +66,13 @@ function makeForecast(data) {
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
 
-    img.setAttribute('src', `http://openweathermap.org/img/wn/${img}@4x.png`);
-    // img.setAttribute('alt', 'Weather icon');
+ 
     
     anchorEl.innerHTML += `  
   <div class="daily-block"
         id=${i + 1}">
-        <p class="img"> ${data.current.weather[0].icon}</p>
+        <p class="date"> ${(data.daily[i].dt)}</p>
+        <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png"> </img>
     <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32}°F</p>
     <p class="wind">Wind:${data.daily[i].wind_speed} MPH </p>
     <p class="icon">  </p> 
