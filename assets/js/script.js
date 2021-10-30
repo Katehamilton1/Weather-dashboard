@@ -4,7 +4,7 @@ var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 
 // Easy access to data
-var cityList = [];
+var fiveDay = [];
 
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
@@ -12,7 +12,7 @@ citySearchEL.addEventListener("submit", function (event) {
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
-  citySearch(userInputEL.value);
+  citySearch();
 });
 
 
@@ -94,16 +94,15 @@ function displaySearchHistory() {
 // searchHistoryList.empty();
 
 
-function citySearch(city) {
+function citySearch(fiveDay) {
   var recentCities = userInputEL.value
 
   var searchHistory ={ 
     city: city, 
    
   }
-var fiveDay = JSON.parse(window.localStorage.getItem('fiveDay'));
+var fiveDay = localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 fiveDay.push(searchHistory)
-
 }
 
 
