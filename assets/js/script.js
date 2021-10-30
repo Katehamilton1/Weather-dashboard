@@ -2,10 +2,7 @@ var citySearchEL = document.getElementById("city-search-form");
 var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
-
-// Easy access to data
 var fiveDay = [];
-
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -15,7 +12,6 @@ citySearchEL.addEventListener("submit", function (event) {
   citySearch();
   displaySearchHistory()
 });
-
 
 //first api that looks at the daily weather
 var getCityWeather = function (city) {
@@ -32,7 +28,6 @@ var getCityWeather = function (city) {
     }
   });
 };
-
 //second api that looks at the daily weather
 var getForcast = function (lat, lon) {
   var apiKey = "147201a46f94fdc2b6ce9d902d685f99";
@@ -57,23 +52,13 @@ var getForcast = function (lat, lon) {
     };
   });
 };
-
-
-
-// var weatherIcon = http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
-// console.log(weatherIcon)
-
-
 //creates the weekly forcast using a loop to create the html elements
 function makeForecast(data) {
-
 
   console.log(data);
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
 
- 
-    
     anchorEl.innerHTML += `  
   <div class="daily-block"
         id=${i + 1}">
@@ -84,35 +69,28 @@ function makeForecast(data) {
     <p class="icon">  </p> 
     <p class="humidity">Humidity:${data.daily[i].humidity}% </p>
     </div>`
-    // console.log(data.daily[i].dt)
-
-    // console.log(makeForecast)
   };
 };
 
+// // Clear search history
+// function displaySearchHistory() {
+//   var searchHistory = document.getElementById("search-history");
+//   console.log("display search");
+// }
 
-
-// Clear search history
-function displaySearchHistory() {
-  var searchHistory = document.getElementById("search-history");
-  console.log("display search");
-}
-
-//button to clear history
-// clearHistory.addEventListener("submit", function (event) {
-//   console.log("clearHistory");
-// });
-
-// searchHistoryList.empty();
-
-function citySearch(fiveDay) {
-  var recentCities = userInputEL.value
- console.log(recentCities);
-fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
-  var searchHistory ={ 
-    city: city, 
+// function citySearch(fiveDay) {
+//   var recentCities = userInputEL.value
+// //  console.log(recentCities);
+// // // fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
+// //   var searchHistory ={ 
+// //     city: city, 
    
-  }
-localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
+  
+// localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
+// JSON.parse(localStorage.getItem('searchHistory'));
 
-}
+
+
+// }
+
+
