@@ -66,7 +66,7 @@ function makeForecast(data) {
   for (let i = 0; i < 5; i++) {
 
     img.setAttribute('src', `http://openweathermap.org/img/wn/${img}@4x.png`);
-    img.setAttribute('alt', 'Weather icon');
+    // img.setAttribute('alt', 'Weather icon');
     
     anchorEl.innerHTML += `  
   <div class="daily-block"
@@ -78,9 +78,10 @@ function makeForecast(data) {
     <p class="humidity">Humidity:${data.daily[i].humidity}% </p>
     </div>`
     console.log(data.daily[i].dt)
+
+    console.log(makeForecast)
   };
 };
-
 
 
 
