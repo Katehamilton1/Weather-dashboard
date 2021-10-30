@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
+
 <body>
     <!-- Jumbotron to display the City name upon search -->
     <div id="header">
@@ -22,48 +24,55 @@
 
 <div class="container">
     <div class="row">
-<div class="col-4 p-2 search-column">
-   <form class="border p-2" id="city-search-form">
-       <aside id="sideMenu" class="sidebar">
-           <h3>Search for a City</h3>
-           <input id="city" type="text" autofocus="true" class="form-input" size="25" />
-           </br>
-           </br>
-           <button class="btn btn-primary" type="submit">search</button>
-   </form>
-   </aside>
-</div>
-        <div class="col-8 border border-dark rounded ">
-                            <p id="temperature"></p>
-                            <p id="UV-index"></p>
-                            <p id="wind-span"></p>
-                            <p id="humidity-span"></p>
-                </div>
-            </div>
+        <div class="col-4 p-2 search-column">
+            <form class="border p-2" id="city-search-form">
+                <aside id="sideMenu" class="sidebar">
+                    <h3>Search for a City</h3>
+                    <input id="city" type="text" autofocus="true" class="form-input" size="25" />
+                    </br>
+                    </br>
+                    <button class="btn" type="submit">search</button>
+            </form>
+            </aside>
         </div>
-    </br>
-</br>  
+        <div class="today col-8">
+            <h3> Today</h3>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            <p id= "img"></p>
+            <p id="temperature"></p>
+            <p id="UV-index"></p>
+            <p id="wind-span"></p>
+            <p id="humidity-span"></p>
+        </div>
+    </div>
+</div>
+</br>
+</br>
 </br>
 </br>
 <!-- forcast  -->
 <div class="container">
     <div class="row">
-<div class="col-4 ">
+        <!-- <div class="col-4 ">
     <p class= "recent-search"></p>
            </br>
            </br>
            <button class="btn btn-primary" type="submit">search</button>
    </form>
-   </aside>
-</div>
-        <div class="col-8 border border-dark rounded ">
-            <h2> Weather forcast</h2>
-            <div id="weather" class="row d-flex justify-content-around">
-            </div>         
-                </div>
-            </div>
+   </aside> -->
+    </div>
+    <div class="Forecast col-12">
+        <h2> Weather forcast</h2>
+        <div id="weather" class="row d-flex justify-content-around">
         </div>
-    </br>
+    </div>
+</div>
+</div>
+</br>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

@@ -12,7 +12,7 @@ citySearchEL.addEventListener("submit", function (event) {
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
-  citySearch();
+  // citySearch();
 });
 
 
@@ -40,9 +40,9 @@ var getForcast = function (lat, lon) {
   fetch(apiURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        document.getElementById("UV-index").innerHTML = "UV index is: " + data.current.uvi;
-        document.getElementById("wind-span").innerHTML ="Current wind speed is: " + data.current.wind_speed;
-        document.getElementById("humidity-span").innerHTML = "Current humidity is: " + data.current.humidity;
+        document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
+        document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
+        document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
 
         currDate = data.current.dt;
         var dateString = moment.unix(currDate).format("DD");
@@ -64,14 +64,18 @@ function makeForecast(data) {
   console.log(data);
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
+
+    img.setAttribute('src', `http://openweathermap.org/img/wn/${img}@4x.png`);
+    img.setAttribute('alt', 'Weather icon');
+    
     anchorEl.innerHTML += `  
-  
-  <div class="forecast bg-primary text-white rounded center"
+  <div class="daily-block"
         id=${i + 1}">
-    <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32} degrees</p>
-    <p class="wind">${data.daily[i].wind_speed} wind speed </p>
+        <p class="img"> ${data.current.weather[0].icon}</p>
+    <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32}°F</p>
+    <p class="wind">Wind:${data.daily[i].wind_speed} MPH </p>
     <p class="icon">  </p> 
-    <p class="humidity">${data.daily[i].humidity} humidity </p>
+    <p class="humidity">Humidity:${data.daily[i].humidity}% </p>
     </div>`
     console.log(data.daily[i].dt)
   };
@@ -93,17 +97,15 @@ function displaySearchHistory() {
 
 // searchHistoryList.empty();
 
-
-function citySearch(fiveDay) {
-  var recentCities = userInputEL.value
-
-  var searchHistory ={ 
-    city: city, 
+// function citySearch(fiveDay) {
+//   var recentCities = userInputEL.value
+//  console.log(recentCities); //cosoloe loging what is being stored in variable recentcities
+//  console.log(recentCities)
+// fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
+//   var searchHistory ={ 
+//     city: city, 
    
-  }
-var fiveDay = localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-fiveDay.push(searchHistory)
-}
+//   }
+// localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
 
-
-console.log(localStorage)
+// }
