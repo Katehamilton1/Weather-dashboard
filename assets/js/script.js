@@ -12,7 +12,8 @@ citySearchEL.addEventListener("submit", function (event) {
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
-  // citySearch();
+  citySearch();
+  displaySearchHistory()
 });
 
 
@@ -56,12 +57,17 @@ var getForcast = function (lat, lon) {
     };
   });
 };
+
+
+
 // var weatherIcon = http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png
 // console.log(weatherIcon)
 
 
 //creates the weekly forcast using a loop to create the html elements
 function makeForecast(data) {
+
+
   console.log(data);
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
@@ -78,9 +84,9 @@ function makeForecast(data) {
     <p class="icon">  </p> 
     <p class="humidity">Humidity:${data.daily[i].humidity}% </p>
     </div>`
-    console.log(data.daily[i].dt)
+    // console.log(data.daily[i].dt)
 
-    console.log(makeForecast)
+    // console.log(makeForecast)
   };
 };
 
@@ -99,15 +105,14 @@ function displaySearchHistory() {
 
 // searchHistoryList.empty();
 
-// function citySearch(fiveDay) {
-//   var recentCities = userInputEL.value
-//  console.log(recentCities); //cosoloe loging what is being stored in variable recentcities
-//  console.log(recentCities)
-// fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
-//   var searchHistory ={ 
-//     city: city, 
+function citySearch(fiveDay) {
+  var recentCities = userInputEL.value
+ console.log(recentCities);
+fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
+  var searchHistory ={ 
+    city: city, 
    
-//   }
-// localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
+  }
+localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
 
-// }
+}
