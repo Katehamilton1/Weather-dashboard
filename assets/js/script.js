@@ -2,6 +2,7 @@ var citySearchEL = document.getElementById("city-search-form");
 var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
+var clearCitiesEl = document.getElementById("clear-cities");
 var fiveDay = [];
 
 //submit button that searches the city
@@ -12,6 +13,12 @@ citySearchEL.addEventListener("submit", function (event) {
   getCityWeather(userInputEL.value);
   save(userInputEL.value);
   // displaySearchHistory()
+});
+
+// Clear search history
+
+clearCitiesEl.addEventListener("click", function () {
+  localStorage.clear();
 });
 
 //first api that looks at the daily weather
@@ -74,11 +81,7 @@ function makeForecast(data) {
   };
 };
 
-// // Clear search history
-// function displaySearchHistory() {
-//   var searchHistory = document.getElementById("search-history");
-//   console.log("display search");
-// }
+
 
 function save(cityname) {
   var previousSearches = JSON.parse(localStorage.getItem('recentCities')) || [];

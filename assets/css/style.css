@@ -85,7 +85,13 @@ opacity: 0.7;
 
 
 .historyButton {
+    font-size: 20px;
     display:block;
     margin-left: auto;
     margin-right: auto;
+    padding:8px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
+    margin-top:10px;
+
 }
