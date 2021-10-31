@@ -3,14 +3,16 @@ var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 var fiveDay = [];
+// var weatherIcon = 
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
   console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
-  citySearch();
-  displaySearchHistory()
+  save(userInputEL.value);
+  // displaySearchHistory()
+  
 });
 
 //first api that looks at the daily weather
@@ -36,7 +38,13 @@ var getForcast = function (lat, lon) {
   fetch(apiURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-       
+        console.log("current data", data)
+        var imgContainer = document.getElementById("img");
+        console.log(imgContainer);
+        var newImg = document.createElement("img");
+        console.log(newImg);
+        newImg.setAttribute("src",`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png`)
+        imgContainer.appendChild(newImg);
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
         document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
         document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
@@ -47,6 +55,8 @@ var getForcast = function (lat, lon) {
         var tomorrow = data.daily[0].dt;
         var tomorrowString = moment.unix(tomorrow).format("DD");
         makeForecast(data);
+
+        
 
       });
     };
@@ -78,19 +88,34 @@ function makeForecast(data) {
 //   console.log("display search");
 // }
 
-// function citySearch(fiveDay) {
-//   var recentCities = userInputEL.value
-// //  console.log(recentCities);
-// // // fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
-// //   var searchHistory ={ 
-// //     city: city, 
+function save(cityname) {
+  // var recentCities = userInputEL.value
+//  console.log(recentCities);
+// // fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
+//   var searchHistory ={ 
+//     city: city, 
    
-  
-// localStorage.setItem('searchHistory', JSON.stringify(fiveDay)); //pushing the fiveday array into the localstorage
-// JSON.parse(localStorage.getItem('searchHistory'));
+  var previousSearches = JSON.parse(localStorage.getItem('recentCities')) || [];
+  previousSearches.push(cityname);
+localStorage.setItem('recentCities', JSON.stringify(previousSearches)); //pushing the fiveday array into the localstorage
+renderRecentCities()
+
+}
+
+// create a for loop that loops over the array. 
 
 
+function renderRecentCities() {
+  var recentCities = JSON.parse(localStorage.getItem('recentCities'));
+  console.log(recentCities)
+  var cityContainerEl = document.getElementById("search-history");
+  console.log(cityContainerEl)
+  cityContainerEl.innerHTML =recentCities;
+}
 
-// }
 
-
+function resetDisplay() {
+  imgContainer.appendChild(newImg);
+  let anchorEl = document.getElementById("weather")
+  var cityContainerEl = document.getElementById("search-history");
+}
