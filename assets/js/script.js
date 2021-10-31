@@ -3,7 +3,7 @@ var userInputEL = document.getElementById("city");
 var clearHistory = document.getElementById("clear-history");
 var currentUVEL = document.getElementById("UV-index");
 var fiveDay = [];
-// var weatherIcon = 
+
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -12,7 +12,6 @@ citySearchEL.addEventListener("submit", function (event) {
   getCityWeather(userInputEL.value);
   save(userInputEL.value);
   // displaySearchHistory()
-  
 });
 
 //first api that looks at the daily weather
@@ -46,18 +45,15 @@ var getForcast = function (lat, lon) {
         newImg.setAttribute("src",`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png`)
         imgContainer.appendChild(newImg);
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
+      
         document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
         document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
         makeForecast(data);
-
-        
-
       });
     };
   });
 };
 
-//creates the weekly forcast using a loop to create the html elements
 function makeForecast(data) {
 
   console.log(data);
@@ -87,7 +83,7 @@ function makeForecast(data) {
 function save(cityname) {
   var previousSearches = JSON.parse(localStorage.getItem('recentCities')) || [];
   previousSearches.push(cityname);
-localStorage.setItem('recentCities', JSON.stringify(previousSearches)); //pushing the fiveday array into the localstorage
+localStorage.setItem('recentCities', JSON.stringify(previousSearches)); 
 renderRecentCities()
 }
 
@@ -102,6 +98,17 @@ function renderRecentCities() {
   cityContainerEl.innerHTML =recentCities;
 }
 
+function cityList(){
+  var recentCities = JSON.parse(localStorage.getItem('recentCities'));
+  
+  for (var i = 0; i < recentCities.length; i++)
+
+var newList  = document.createElement("li");
+newList.innerHTML = recentCities[i];
+document.getElementById("search-history").appendChild(newList);
+}
+
+cityList()
 
 function resetDisplay() {
   imgContainer.appendChild(newImg);
