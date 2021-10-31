@@ -85,13 +85,14 @@ function save(cityname) {
   previousSearches.push(cityname);
 localStorage.setItem('recentCities', JSON.stringify(previousSearches)); 
 renderRecentCities()
+
 }
 
 // create a for loop that loops over the array. 
 
 
 function renderRecentCities() {
-  var recentCities = JSON.parse(localStorage.getItem('recentCities'));
+  var recentCities = JSON.parse(localStorage.getItem('recentCities')) || [];;
   console.log(recentCities)
   var cityContainerEl = document.getElementById("search-history");
   console.log(cityContainerEl)
@@ -101,11 +102,19 @@ function renderRecentCities() {
 function cityList(){
   var recentCities = JSON.parse(localStorage.getItem('recentCities'));
   
-  for (var i = 0; i < recentCities.length; i++)
+  for (var i = 0; i < recentCities.length; i++){
 
-var newList  = document.createElement("li");
+var newList  = document.createElement("button");
+newList.type = "button";
 newList.innerHTML = recentCities[i];
 document.getElementById("search-history").appendChild(newList);
+
+newList.onclick = function(){
+
+}
+
+
+}
 }
 
 cityList()
@@ -115,3 +124,4 @@ function resetDisplay() {
   let anchorEl = document.getElementById("weather")
   var cityContainerEl = document.getElementById("search-history");
 }
+
