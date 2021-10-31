@@ -48,12 +48,6 @@ var getForcast = function (lat, lon) {
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
         document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
         document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
-
-        currDate = data.current.dt;
-        var dateString = moment.unix(currDate).format("DD");
-
-        var tomorrow = data.daily[0].dt;
-        var tomorrowString = moment.unix(tomorrow).format("DD");
         makeForecast(data);
 
         
@@ -62,17 +56,19 @@ var getForcast = function (lat, lon) {
     };
   });
 };
+
 //creates the weekly forcast using a loop to create the html elements
 function makeForecast(data) {
 
   console.log(data);
   let anchorEl = document.getElementById("weather")
   for (let i = 0; i < 5; i++) {
-
+    let myDate = new Date(data.daily[i].dt*1000).toLocaleDateString("en-us");
+  
     anchorEl.innerHTML += `  
   <div class="daily-block"
         id=${i + 1}">
-        <p class="date"> ${(data.daily[i].dt)}</p>
+        <p class="date">${myDate} </p>
         <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png"> </img>
     <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32}°F</p>
     <p class="wind">Wind:${data.daily[i].wind_speed} MPH </p>
@@ -89,17 +85,10 @@ function makeForecast(data) {
 // }
 
 function save(cityname) {
-  // var recentCities = userInputEL.value
-//  console.log(recentCities);
-// // fiveDay.push(recentCities); // pushing the recent cities into the fiveday array
-//   var searchHistory ={ 
-//     city: city, 
-   
   var previousSearches = JSON.parse(localStorage.getItem('recentCities')) || [];
   previousSearches.push(cityname);
 localStorage.setItem('recentCities', JSON.stringify(previousSearches)); //pushing the fiveday array into the localstorage
 renderRecentCities()
-
 }
 
 // create a for loop that loops over the array. 
