@@ -105,6 +105,7 @@ function cityList(){
   for (var i = 0; i < recentCities.length; i++){
 
 var newList  = document.createElement("button");
+newList.classList.add("historyButton");
 newList.type = "button";
 newList.innerHTML = recentCities[i];
 document.getElementById("search-history").appendChild(newList);
@@ -112,8 +113,6 @@ document.getElementById("search-history").appendChild(newList);
 newList.onclick = function(){
 
 }
-
-
 }
 }
 
