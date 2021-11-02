@@ -12,7 +12,7 @@ citySearchEL.addEventListener("submit", function (event) {
   getCityWeather(userInputEL.value);
   save(userInputEL.value);
   userInputEL.value = ""
-  resetDisplay()
+  // resetDisplay()
   // displaySearchHistory()
 });
 
@@ -54,8 +54,8 @@ var getForcast = function (lat, lon) {
         console.log(newImg);
         newImg.setAttribute("src",`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png`)
         imgContainer.appendChild(newImg);
+        document.getElementById("temperature").innerHTML = Math.round((data.current.temp) - 273.15) * 1.8 + 32 + "°F";
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
-      
         document.getElementById("wind-span").innerHTML ="Wind: " + data.current.wind_speed + "MPH";
         document.getElementById("humidity-span").innerHTML = "Humidity: " + data.current.humidity + "%";
         makeForecast(data);
@@ -63,6 +63,20 @@ var getForcast = function (lat, lon) {
     };
   });
 };
+
+if (data.current.uvi <== 2)
+{UV-index.setAttribute("class", "favorable")  
+}
+if (data.current.uvi > 2 && data.current.temp  <= 5)
+{UV-index.setAttribute("class","moderate" )
+}
+if (data.current.uvi > 5){
+  UV-index.setAttribute("class", "severe")
+}
+
+
+
+
 
 function makeForecast(data) {
 
@@ -76,7 +90,7 @@ function makeForecast(data) {
         id=${i + 1}">
         <p class="date">${myDate} </p>
         <img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png"> </img>
-    <p class="temp"> ${Math.floor((data.daily[i].temp.day) - 273.15) * 1.8 + 32}°F</p>
+    <p class="temp"> ${Math.round((data.daily[i].temp.day) - 273.15) * 1.8 + 32}°F</p>
     <p class="wind">Wind:${data.daily[i].wind_speed} MPH </p>
     <p class="icon">  </p> 
     <p class="humidity">Humidity:${data.daily[i].humidity}% </p>
@@ -112,14 +126,13 @@ function cityList(){
 
 var newList  = document.createElement("button");
 newList.classList.add("historyButton");
+
 newList.type = "button";
 newList.innerHTML = recentCities[i];
 document.getElementById("search-history").appendChild(newList);
 
-newList.addEventListener("click", function () {
-  console.log(userInputEL.value);
-  getCityWeather(userInputEL.value);
-  save(userInputEL.value);
+newList.addEventListener("click", function (event) {
+getCityWeather(event.target.innerHTML)
   userInputEL.value = ""
 });
 
