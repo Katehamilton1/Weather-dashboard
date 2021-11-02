@@ -57,14 +57,14 @@ var getForcast = function (lat, lon) {
         document.getElementById("temperature").innerHTML = Math.round((data.current.temp) - 273.15) * 1.8 + 32 + "°F";
         document.getElementById("UV-index").innerHTML = "UV index: " + data.current.uvi;
         
-if (data.current.uvi <= 2) {
-  currentUVEL.setAttribute("class", "favorable");
+       if (data.current.uvi <= 2) {
+        currentUVEL.setAttribute("class", "favorable");
         }
         else if (data.current.uvi > 2 && data.current.temp <= 5) {
           currentUVEL.setAttribute("class", "moderate");
         }
-        else (data.current.uvi > 5) {
-          currentUVEL.setAttribute("class", "severe")
+        else  {
+          currentUVEL.setAttribute("class", "severe");
         }
     
 
