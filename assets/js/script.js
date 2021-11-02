@@ -8,12 +8,15 @@ var fiveDay = [];
 //submit button that searches the city
 citySearchEL.addEventListener("submit", function (event) {
   event.preventDefault();
-  console.log("form submited");
   console.log(userInputEL.value);
   getCityWeather(userInputEL.value);
   save(userInputEL.value);
+  userInputEL.value = ""
+  resetDisplay()
   // displaySearchHistory()
 });
+
+
 
 // Clear search history
 
@@ -88,7 +91,7 @@ function save(cityname) {
   previousSearches.push(cityname);
 localStorage.setItem('recentCities', JSON.stringify(previousSearches)); 
 renderRecentCities()
-
+cityList()
 }
 
 // create a for loop that loops over the array. 
@@ -99,7 +102,7 @@ function renderRecentCities() {
   console.log(recentCities)
   var cityContainerEl = document.getElementById("search-history");
   console.log(cityContainerEl)
-  cityContainerEl.innerHTML =recentCities;
+  cityContainerEl.innerHTML ="";
 }
 
 function cityList(){
@@ -113,17 +116,22 @@ newList.type = "button";
 newList.innerHTML = recentCities[i];
 document.getElementById("search-history").appendChild(newList);
 
-newList.onclick = function(){
+newList.addEventListener("click", function () {
+  console.log(userInputEL.value);
+  getCityWeather(userInputEL.value);
+  save(userInputEL.value);
+  userInputEL.value = ""
+});
 
-}
+
 }
 }
 
 cityList()
 
-function resetDisplay() {
-  imgContainer.appendChild(newImg);
-  let anchorEl = document.getElementById("weather")
-  var cityContainerEl = document.getElementById("search-history");
-}
 
+// function resetDisplay() {
+//   imgContainer.appendChild(newImg)= ""
+//   anchorEl = ""
+//   cityContainerEl = ""
+// }

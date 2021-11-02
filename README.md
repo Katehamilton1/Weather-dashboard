@@ -1,6 +1,34 @@
 # Weather-dashboard
 
 
+# Weather-Dashboard
+### Description
+Weather-Dashboard is an application to find a weather condition of a given city both the current and 5-Days forecast at the same time.
+The server-side API used was Open Weather APi.
+
+
+- City, Date, Icon-image
+- Temperature
+- Humidity
+- Wind Speed
+- UV index
+
+
+The local storage is used here to store the previous search city and display them to the user in the left side of the page . The user can also clear the search history by clicking the clear history button.
+If the user wants to see the past search city weather condition again, just click the list group item cities under the clear history button.
+
+
+
+### Screenshots:
+
+
+
+
+Developed by: Kate Hamilton 
+
+
+
+
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
 THEN I am presented with current and future conditions for that city and that city is added to the search history
